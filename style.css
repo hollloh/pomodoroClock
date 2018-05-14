@@ -17,6 +17,10 @@ body {
   transition: 55s;
 }
 
+#interviewA {
+  border: 1px solid red;
+}
+
 #main {
   text-align: right;
   background-color: #000000;
@@ -62,8 +66,11 @@ body {
 }
 
 #milRaw {
+  position: fixed;
   text-align: right;
-  border: none;
+  bottom: 1px;
+  right: 1px;
   color: #000000;
   font-size: 8px;
 }
+
