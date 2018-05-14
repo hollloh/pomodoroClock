@@ -1,5 +1,6 @@
 
 let body = document.querySelector('body');
+let alarm = document.querySelector('#alarm');
 let setPomo = document.querySelector('#setPomo');
 let setBreak = document.querySelector('#setBreak');
 let btn = document.querySelector('#btn');
@@ -140,6 +141,7 @@ function startPomo() {
 
       milRaw.innerHTML = dif;
       if (dif < 100) { // not zero to avoid stuttering of timer
+        alarm.play();
         if (flipFlop === pomo) {
           clearInterval(intervalID);
           let breakPomo = Date.now();
@@ -160,6 +162,8 @@ function startPomo() {
 function stopPomo() {
   clearInterval(intervalID);
   clearInterval(backColInt);
+  body.style.backgroundColor = '#00ffaa';
+  body.style.transition = '5s';
   btn.textContent = 'RESET';
   btn.onclick = startPomo;
 }
@@ -168,16 +172,17 @@ function random(number) {
   return Math.floor(Math.random() * number);
 }
 function bgChange() {
-  let rndCol = 'rgb(' + random(100) + ',' + random(100) + ',' + random(100) + ')';
+  let rndCol = 'rgb('+random(100)+','+random(100)+','+random(100)+')';
   return rndCol;
 }
 
 let backColInt;
 function backCol() {
   body.style.backgroundColor = bgChange();
+  body.style.transition = '55s';
   backColInt = setInterval(function () {
     body.style.backgroundColor = bgChange();
-  }, (1000 * 60));
+  },(1000*60));
 }
 
-backCol(); // remove this later
+//backCol(); // remove this later
