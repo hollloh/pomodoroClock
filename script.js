@@ -36,9 +36,9 @@ btn.onclick = startPomo;
 
 let intervalID;
 function startPomo() {
+  btn.onclick = stopPomo;
   backCol();
   btn.textContent = 'POMO';
-  btn.onclick = stopPomo;
   let pomo = Date.now();
   pomo += 1000 * 60 * setPomo.value;
   pomo = new Date(pomo);
@@ -162,8 +162,8 @@ function startPomo() {
 function stopPomo() {
   clearInterval(intervalID);
   clearInterval(backColInt);
-  body.style.backgroundColor = '#00ffaa';
   body.style.transition = '5s';
+  body.style.backgroundColor = '#00ffaa';
   btn.textContent = 'RESET';
   btn.onclick = startPomo;
 }
