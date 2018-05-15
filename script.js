@@ -38,6 +38,11 @@ function startPomo() {
   btn.onclick = stopPomo;
   backCol();
   btn.textContent = 'POMO';
+  if (isNaN(setPomo.value) || isNaN(setBreak.value)) {
+    stopPomo();
+    btn.textContent = 'KETCHUP'
+    return;
+  }
   let pomo = Date.now();
   pomo += 1000 * 60 * setPomo.value;
   pomo = new Date(pomo);
