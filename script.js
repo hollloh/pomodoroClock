@@ -36,11 +36,13 @@ btn.onclick = startPomo;
 let intervalID;
 function startPomo() {
   btn.onclick = stopPomo;
+  main.style.backgroundColor = 'transparent';
+  main.style.transition = '55s';
   backCol();
   btn.textContent = 'POMO';
   if (isNaN(setPomo.value) || isNaN(setBreak.value)) {
     stopPomo();
-    btn.textContent = 'KETCHUP'
+    btn.textContent = 'KETCHUP';
     return;
   }
   let pomo = Date.now();
@@ -168,6 +170,8 @@ function stopPomo() {
   clearInterval(backColIntID);
   body.style.transition = '5s';
   body.style.backgroundColor = '#00ffaa';
+  main.style.backgroundColor = '#000000';
+  main.style.transition = '5s';
   btn.textContent = 'RESET';
   btn.onclick = startPomo;
 }
