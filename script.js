@@ -31,7 +31,6 @@ let s3 = document.querySelector('.s3');
 let s2 = document.querySelector('.s2');
 let s1 = document.querySelector('.s1');
 
-
 btn.onclick = startPomo;
 
 let intervalID;
@@ -72,8 +71,8 @@ function startPomo() {
       let dds = Math.floor((dif % (1000 * 60)) / 10000); // doubleDigitSecond
       let sdm = Math.floor((dif % (10000 * 60)) / (1000 * 60)); // singleDigitMinute
       let ddm = Math.floor((dif % (1000 * 60 * 60)) / (10000 * 60)); // doubleDigitMinute
-      let sdh = Math.floor(dif % (10000 * 60 * 60) / (1000 * 60 * 60));
-      let ddh = Math.floor(dif % (100000*60*60) / (10000*60*60));
+      let sdh = Math.floor(dif % (10000 * 60 * 60) / (1000 * 60 * 60)); // singleDigitHour
+      let ddh = Math.floor(dif % (100000*60*60) / (10000*60*60)); // doubleDigitHour
 
       // obviously can be simplified
       // just haven't thought of HOW just yet
@@ -161,7 +160,7 @@ function startPomo() {
 }
 function stopPomo() {
   clearInterval(intervalID);
-  clearInterval(backColInt);
+  clearInterval(backColIntID);
   body.style.transition = '5s';
   body.style.backgroundColor = '#00ffaa';
   btn.textContent = 'RESET';
@@ -172,17 +171,15 @@ function random(number) {
   return Math.floor(Math.random() * number);
 }
 function bgChange() {
-  let rndCol = 'rgb('+random(100)+','+random(100)+','+random(100)+')';
+  let rndCol = 'rgb('+random(50)+','+random(50)+','+random(50)+')';
   return rndCol;
 }
 
-let backColInt;
+let backColIntID;
 function backCol() {
   body.style.backgroundColor = bgChange();
   body.style.transition = '55s';
-  backColInt = setInterval(function () {
+  backColIntID = setInterval(function () {
     body.style.backgroundColor = bgChange();
   },(1000*60));
 }
-
-//backCol(); // remove this later
