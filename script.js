@@ -38,7 +38,7 @@ function startPomo() {
   btn.onclick = stopPomo;
   main.style.backgroundColor = 'transparent';
   main.style.transition = '55s';
-  backCol();
+  rndmBckgrndClr();
   btn.textContent = 'POMO';
   if (isNaN(setPomo.value) || isNaN(setBreak.value)) {
     stopPomo();
@@ -74,18 +74,12 @@ function startPomo() {
       demo.style.border = '1px solid #00ffaa';
       demo.innerHTML = h + ':' + m + ':' + s + ':' + deciS;
 
-      let sds = Math.floor((dif % 10000) / 1000); // singleDigitSecond
-      let dds = Math.floor((dif % (1000 * 60)) / 10000); // doubleDigitSecond
-      let sdm = Math.floor((dif % (10000 * 60)) / (1000 * 60)); // singleDigitMinute
-      let ddm = Math.floor((dif % (1000 * 60 * 60)) / (10000 * 60)); // doubleDigitMinute
-      let sdh = Math.floor(dif % (10000 * 60 * 60) / (1000 * 60 * 60)); // singleDigitHour
+      let sds = Math.floor(dif % 10000 / 1000); // singleDigitSecond
+      let dds = Math.floor(dif % (1000*60) / 10000); // doubleDigitSecond
+      let sdm = Math.floor(dif % (10000*60) / (1000*60)); // singleDigitMinute
+      let ddm = Math.floor(dif % (1000*60*60) / (10000*60)); // doubleDigitMinute
+      let sdh = Math.floor(dif % (10000*60*60) / (1000*60*60)); // singleDigitHour
       let ddh = Math.floor(dif % (100000*60*60) / (10000*60*60)); // doubleDigitHour
-
-      // obviously can be simplified
-      // just haven't thought of HOW just yet
-      // will condense to one line FOR NOW
-      // i think the solution will be making those cell classes (m14, s3 ...)
-      // more flexible; e.g. someVariable.style = 
 
       if (ddh === 9) { h14.style.backgroundColor = '#00ffaa'; h13.style.backgroundColor = 'transparent'; h12.style.backgroundColor = 'transparent'; h11.style.backgroundColor = '#00ffaa'; h14.style.boxShadow = '0px 0px 3px #00ffaa'; h13.style.boxShadow = '0px 0px 3px transparent'; h12.style.boxShadow = '0px 0px 3px transparent'; h11.style.boxShadow = '0px 0px 3px #00ffaa'; }
       if (ddh === 8) { h14.style.backgroundColor = '#00ffaa'; h13.style.backgroundColor = 'transparent'; h12.style.backgroundColor = 'transparent'; h11.style.backgroundColor = 'transparent'; h14.style.boxShadow = '0px 0px 3px #00ffaa'; h13.style.boxShadow = '0px 0px 3px transparent'; h12.style.boxShadow = '0px 0px 3px transparent'; h11.style.boxShadow = '0px 0px 3px transparent'; }
@@ -165,6 +159,7 @@ function startPomo() {
     },1);
   }
 }
+
 function stopPomo() {
   clearInterval(intervalID);
   clearInterval(backColIntID);
@@ -179,16 +174,16 @@ function stopPomo() {
 function random(number) {
   return Math.floor(Math.random() * number);
 }
-function bgChange() {
+function genCol() {
   let rndCol = 'rgb('+random(50)+','+random(50)+','+random(50)+')';
   return rndCol;
 }
 
 let backColIntID;
-function backCol() {
-  body.style.backgroundColor = bgChange();
+function rndmBckgrndClr() {
+  body.style.backgroundColor = genCol();
   body.style.transition = '55s';
   backColIntID = setInterval(function () {
-    body.style.backgroundColor = bgChange();
+    body.style.backgroundColor = genCol();
   },(1000*60));
 }
