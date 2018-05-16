@@ -141,9 +141,17 @@ function startPomo() {
 
       milRaw.innerHTML = dif;
       if (dif < 100) { // not zero to avoid stuttering of timer
-        alarm.style.display = 'initial';
+
+        let iOS = /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
+        if (iOS === false) {
+          alarm.style.display = 'initial';
+        }
+
         alarm.play();
-        alarm.style.display = 'none';
+
+        let iOSID = setInterval(function(){
+          alarm.style.display = 'none';
+        },5000);
 
         if (flipFlop === pomo) {
           clearInterval(intervalID);
