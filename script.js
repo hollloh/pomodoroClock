@@ -31,6 +31,13 @@ let s3 = document.querySelector('.s3');
 let s2 = document.querySelector('.s2');
 let s1 = document.querySelector('.s1');
 
+let iOS = /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
+if (iOS === true) {
+  alarm.controls = true;
+  alarm.autoplay = true;
+  alarm.style.display = 'initial';
+}
+
 btn.onclick = startPomo;
 
 let intervalID;
@@ -141,17 +148,11 @@ function startPomo() {
 
       milRaw.innerHTML = dif;
       if (dif < 100) { // not zero to avoid stuttering of timer
-
-        let iOS = /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
-        if (iOS === true) {
-          alarm.style.display = 'initial';
-        }
-
         alarm.play();
 
         let iOSID = setInterval(function(){
           alarm.style.display = 'none';
-        },5000);
+        },16000);
 
         if (flipFlop === pomo) {
           clearInterval(intervalID);
