@@ -71,6 +71,9 @@ body {
 }
 
 #alarm {
+  position: fixed;
+  bottom: 1px;
+  left: 1px;
   display: none;
 }
 
