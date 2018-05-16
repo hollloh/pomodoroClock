@@ -141,7 +141,10 @@ function startPomo() {
 
       milRaw.innerHTML = dif;
       if (dif < 100) { // not zero to avoid stuttering of timer
+        alarm.style.display = 'initial';
         alarm.play();
+        alarm.style.display = 'none';
+
         if (flipFlop === pomo) {
           clearInterval(intervalID);
           let breakPomo = Date.now();
