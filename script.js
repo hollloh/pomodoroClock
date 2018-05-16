@@ -143,7 +143,7 @@ function startPomo() {
       if (dif < 100) { // not zero to avoid stuttering of timer
 
         let iOS = /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
-        if (iOS === false) {
+        if (iOS === true) {
           alarm.style.display = 'initial';
         }
 
