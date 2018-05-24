@@ -70,7 +70,18 @@ body {
   padding: 3px;
 }
 
+.alarmNote {
+  text-shadow: none;
+  font-size: 10px;
+  color: #000000;
+  position: fixed;
+  bottom: 41px;
+  left: 1px;
+  display: none;
+}
+
 #alarm {
+  text-shadow: none;
   position: fixed;
   bottom: 1px;
   left: 1px;
