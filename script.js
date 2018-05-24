@@ -1,5 +1,6 @@
 
 let body = document.querySelector('body');
+let alarmNote = document.querySelector('.alarmNote');
 let alarm = document.querySelector('#alarm');
 let setPomo = document.querySelector('#setPomo');
 let setBreak = document.querySelector('#setBreak');
@@ -31,12 +32,19 @@ let s3 = document.querySelector('.s3');
 let s2 = document.querySelector('.s2');
 let s1 = document.querySelector('.s1');
 
+
 let iOS = /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
 if (iOS === true) {
-  alarm.controls = true;
-  alarm.autoplay = true;
+  alarmNote.style.display = 'initial';
   alarm.style.display = 'initial';
+  alarm.addEventListener('play', manualPlayForiOS);
 }
+function manualPlayForiOS() {
+  let iOSID = setInterval(function(){
+    alarmNote.style.display = 'none';
+  },1);
+}
+
 
 btn.onclick = startPomo;
 
@@ -52,6 +60,7 @@ function startPomo() {
     btn.textContent = 'KETCHUP';
     return;
   }
+  alarmNote.style.display = 'none';
   let pomo = Date.now();
   pomo += 1000 * 60 * setPomo.value;
   pomo = new Date(pomo);
@@ -149,11 +158,6 @@ function startPomo() {
       milRaw.innerHTML = dif;
       if (dif < 100) { // not zero to avoid stuttering of timer
         alarm.play();
-
-        let iOSID = setInterval(function(){
-          alarm.style.display = 'none';
-        },16000);
-
         if (flipFlop === pomo) {
           clearInterval(intervalID);
           let breakPomo = Date.now();
