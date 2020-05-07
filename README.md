@@ -1,4 +1,4 @@
 # pomodoroClock
 freeCodeCamp project
 
-https://hollloh.github.io/pomodoroClock/
+https://ojjjo.github.io/pomodoroClock/
